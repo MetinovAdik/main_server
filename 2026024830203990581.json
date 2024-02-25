@@ -1,0 +1,1 @@
+{"text": " Hello! My name is Adilet.", "segments": [{"id": 0, "seek": 0, "start": 0.0, "end": 2.0, "text": " Hello! My name is Adilet.", "tokens": [50364, 2425, 0, 1222, 1315, 307, 1999, 388, 302, 13, 50464], "temperature": 0.0, "avg_logprob": -0.5945838292439779, "compression_ratio": 0.7575757575757576, "no_speech_prob": 0.20454706251621246}], "language": "ru"}

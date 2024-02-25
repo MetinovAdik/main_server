@@ -1,0 +1,2 @@
+Hi, this is Adilet and this is a test of our local machine.
+We are working on the test project.

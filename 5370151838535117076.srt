@@ -1,0 +1,8 @@
+1
+00:00:00,000 --> 00:00:07,000
+Hi, this is Adilet and this is a test of our local machine.
+
+2
+00:00:07,000 --> 00:00:11,000
+We are working on the test project.
+
