@@ -46,6 +46,40 @@ public class TextToSpeechService {
             }
         });
     }
+
+    @Async
+    public CompletableFuture<Path> synthesizeSpeech(String text) {
+        return CompletableFuture.supplyAsync(() -> {
+            int speakerId = 2;
+            JSONObject body = new JSONObject();
+            body.put("text", text);
+            body.put("speaker_id", speakerId);
+
+            MediaType JSON = MediaType.parse("application/json; charset=utf-8");
+            RequestBody requestBody = RequestBody.create(body.toString(), JSON);
+
+            Request request = new Request.Builder()
+                    .url(ttsApiUrl)
+                    .post(requestBody)
+                    .addHeader("Authorization", "Bearer " + bearerToken)
+                    .build();
+
+            try (Response response = client.newCall(request).execute()) {
+                if (!response.isSuccessful()) throw new IOException("Unexpected code " + response);
+
+                // Создание временного файла для сохранения аудио
+                Path tempAudioFile = Files.createTempFile("tts-", ".mp3");
+
+                // Запись тела ответа в файл
+                Files.write(tempAudioFile, response.body().bytes(), StandardOpenOption.WRITE);
+
+                return tempAudioFile;
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
+    }
+    /*
     @Async
     public Path synthesizeSpeech(String text) throws IOException {
         int speakerId = 2;
@@ -74,4 +108,6 @@ public class TextToSpeechService {
             return tempAudioFile;
         }
     }
+
+     */
 }
